@@ -5,19 +5,13 @@ import express, {
 } from "express";
 import { db } from "./banco.js";
 import type { Tarefa, AtualizarTarefaDTO } from "./types/tarefa.js";
+import { encontraTarefa } from "./repositories/tarefas.repository.js";
 
 import routerTarefas from "./routes/tarefas.routes.js";
 
 const app: Application = express();
 app.use(express.json());
 app.use(routerTarefas);
-
-function encontraTarefa(id: number): Tarefa | undefined {
-  const tarefaProcurada: Tarefa | undefined = db
-    .prepare("SELECT * FROM tarefas WHERE id = ?")
-    .get(id) as Tarefa | undefined;
-  return tarefaProcurada;
-}
 
 // DUPLA 1
 app.get("/tarefas/:id", (req: Request, res: Response): void => {
