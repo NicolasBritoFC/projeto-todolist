@@ -10,3 +10,7 @@ export interface AtualizarTarefaDTO {
   titulo?: string;
   feito?: number;
 }
+
+export interface CriarTarefaDTO {
+  titulo?: string;
+}
